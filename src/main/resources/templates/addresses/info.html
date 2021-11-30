@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Адрес</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / <a href="/addresses/info">Адреса</a> / Редактирование
+    </div>
+
+    <div class="content">
+        <form th:action="${_action} == 'add' ? @{/addresses/add} : @{/addresses/update}"
+              th:method="post"
+              th:object="${data}">
+
+            <input type="hidden" id="id" th:field="*{id}" />
+
+            <div class="value">
+                <label>Адрес: </label>
+                <input type="text" id="address" th:field="*{address}" />
+            </div>
+
+
+            <p>
+                <input class="button" type="submit" value="Сохранить">
+                <a class="button" th:if="${_action} != 'add'" th:href="@{/addresses/{id}/delete(id=${data.id})}">Удалить</a>
+            </p>
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

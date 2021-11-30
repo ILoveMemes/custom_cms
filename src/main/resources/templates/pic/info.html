@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о картинке</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / <a href="/pic/info">Картинки</a> / Редактирование
+    </div>
+
+    <div class="content">
+        <div th:if="${_action} == 'add'">
+            <form th:action="@{/pic/upload}" th:method="post"
+                  enctype="multipart/form-data">
+                <div>
+                    <label>Картинка: </label>
+                    <input type="file" name="image" accept="image/png, image/jpeg" />
+                    <p><input class="button" type="submit" value="Загрузить"></p>
+                </div>
+            </form>
+        </div>
+        <div th:unless="${_action} == 'add'">
+            <div>Имя: <span th:text="${picture.name}"></span></div>
+            <div>
+                <img th:src="@{/pic/{id}(id = ${picture.id})}" height="200"/>
+            </div>
+            <a class="button" th:href="@{/pic/{id}/delete(id = ${picture.id})}">Удалить</a>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

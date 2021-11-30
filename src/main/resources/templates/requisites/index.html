@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Реквизиты</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / Реквизиты
+    </div>
+
+    <div class="content">
+        <div th:each="requisite: ${data}">
+            <a th:href="@{/requisites/{id}/info(id = ${requisite.id})}">Редактировать</a>
+        </div>
+
+        <a class="button" href="/requisites/create">Добавить</a>
+
+    </div>
+
+</div>
+
+
+
+
+</body>
+</html>

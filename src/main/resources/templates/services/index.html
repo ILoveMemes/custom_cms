@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Услуги и сервисы</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / Услуги и сервисы
+    </div>
+
+    <div class="content">
+        <div th:each="service: ${data}">
+            <a th:href="@{/services/{id}/info(id = ${service.id})}" th:text="${service.caption}">caption</a>
+        </div>
+
+        <a class="button" href="/services/create">Добавить</a>
+
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

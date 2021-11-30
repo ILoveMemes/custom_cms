@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказчики</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / Заказчики
+    </div>
+
+    <div class="content">
+        <div th:each="customer: ${data}">
+            <img th:src="@{/pic/{id}(id = ${customer.pictureId})}" height="64"/>
+            <a th:href="@{/customers/{id}/info(id = ${customer.id})}" th:text="${customer.name}">name</a>
+        </div>
+
+        <a class="button" href="/customers/create">Добавить заказчика</a>
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

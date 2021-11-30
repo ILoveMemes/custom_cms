@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение параметров доступа</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / Редактирование параметров доступа
+    </div>
+
+    <div class="content">
+        <form th:action="@{/user/update}"
+              th:method="post"
+              th:object="${data}">
+
+            <input type="hidden" id="id" th:field="*{id}" />
+
+            <div class="value">
+                <label>Логин: </label>
+                <input type="text" id="login" th:field="*{login}"/>
+            </div>
+            <div class="value">
+                <label>Новый пароль: </label>
+                <input type="password" id="password" th:field="*{password}"/>
+            </div>
+
+            <p>
+                <input class="button" type="submit" value="Сохранить">
+            </p>
+        </form>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Мессенджеры</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / Мессенджеры
+    </div>
+
+    <div class="content">
+        <div th:each="messenger: ${data}">
+            <img th:src="@{/pic/{id}(id = ${messenger.pictureId})}" height="64"/>
+            <a th:href="@{/messengers/{id}/info(id = ${messenger.id})}">Редактировать</a>
+        </div>
+
+        <a class="button" href="/messengers/create">Добавить мессенджер</a>
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

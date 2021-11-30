@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pictures List</title>
+</head>
+<body>
+
+    <div th:fragment="picture_selector">
+        <div>
+            <div th:each="pic: ${pictures}" style="display: inline-block;">
+                <a th:href="@{/pic/{id}(id=${pic})}"><img th:src="@{/pic/{id}(id = ${pic})}" height="64"/></a>
+                <input th:id = "${pic}" type="checkbox" name="check" onclick="onlyOne(this);"/>
+            </div>
+        </div>
+        <script type="text/javascript">
+            let hi = document.getElementById('pictureId');
+            if (hi) {
+                let tc = document.getElementById(hi.value);
+                if (tc) {
+                    tc.checked = true;
+                }
+            }
+            function onlyOne(checkbox) {
+                let hiddenInput = document.getElementById('pictureId');
+                if (hiddenInput) {
+                    hiddenInput.value = checkbox.id;
+                }
+                let checkboxes = document.getElementsByName('check');
+                checkboxes.forEach((item) => {
+                    if (item !== checkbox) item.checked = false
+                });
+            }
+        </script>
+    </div>
+
+    <div th:fragment="picture_selector_upg(groupName)">
+        <div>
+            <div th:each="pic: ${pictures}" style="display: inline-block;">
+                <a th:href="@{/pic/{id}(id=${pic})}"><img th:src="@{/pic/{id}(id = ${pic})}" height="64"/></a>
+                <input th:value = "${pic}" th:id = "${groupName}+${pic}" type="checkbox" th:name="${groupName}" th:onclick="groupClick(this, [[${groupName}]]);"/>
+            </div>
+        </div>
+        <script th:inline="javascript">
+        {
+            let hi = document.getElementById([[${groupName}]]);
+            if (hi) {
+                let tc = document.getElementById([[${groupName}]] + hi.value);
+                if (tc) {
+                    tc.checked = true;
+                }
+            }
+        }
+        </script>
+    </div>
+
+    <script th:inline="javascript" th:fragment="picture_selector_script">
+            function groupClick(checkbox, groupName) {
+                let hiddenInput = document.getElementById(groupName);
+                if (hiddenInput) {
+                    hiddenInput.value = checkbox.value;
+                }
+                let checkboxes = document.getElementsByName(groupName);
+                checkboxes.forEach((item) => {
+                    if (item !== checkbox) item.checked = false
+                });
+            }
+    </script>
+
+</body>
+</html>

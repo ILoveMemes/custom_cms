@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список адресов</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <div class="mainContainer">
+
+        <div class="title">
+            <a href="/admin">Панель управления</a> / Адреса
+        </div>
+
+        <div class="content">
+            <div th:each="address: ${data}">
+                <a th:href="@{/addresses/{id}/info(id = ${address.id})}" th:text="${address.address}">address</a>
+            </div>
+
+            <a class="button" href="/addresses/create">Добавить адрес</a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

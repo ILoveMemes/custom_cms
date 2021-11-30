@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Слайд</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+
+<script type="text/javascript">
+    function auto_grow(element) {
+        element.style.height = "5px";
+        element.style.height = (element.scrollHeight)+"px";
+    }
+    function autoSize(id) {
+        let elm = document.getElementById(id);
+        if (elm) {
+            elm.style.height = (elm.scrollHeight)+"px";
+        }
+    }
+</script>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / <a href="/history/info">История</a> / Редактирование
+    </div>
+
+    <div class="content">
+        <form th:action="${_action} == 'add' ? @{/history/add} : @{/history/update}"
+              th:method="post"
+              th:object="${data}">
+
+            <input type="hidden" id="id" th:field="*{id}" />
+
+            <div class="value">
+                <label>Подпись: </label>
+                <textarea oninput="auto_grow(this);" id="caption" th:field="*{caption}" />
+                <script type="text/javascript">
+                    autoSize("caption");
+                </script>
+            </div>
+            <div>
+                <input type="hidden" id="pictureId" th:field="*{pictureId}" />
+                <div>Картинка:</div>
+                <div th:include="pic/select::picture_selector" style="max-height:300px;overflow-y:auto;"/>
+            </div>
+
+            <p>
+                <input class="button" type="submit" value="Сохранить">
+                <a class="button" th:if="${_action} != 'add'" th:href="@{/history/{id}/delete(id=${data.id})}">Удалить</a>
+            </p>
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

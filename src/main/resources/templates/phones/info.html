@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Телефон</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / <a href="/phones/info">Телефоны</a> / Редактирование
+    </div>
+
+    <div class="content">
+        <form th:action="${_action} == 'add' ? @{/phones/add} : @{/phones/update}"
+              th:method="post"
+              th:object="${data}">
+
+            <input type="hidden" id="id" th:field="*{id}" />
+
+            <div class="value">
+                <label>Телефон: </label>
+                <input type="text" id="phone" th:field="*{phone}" />
+            </div>
+
+            <p>
+                <input class="button" type="submit" value="Сохранить">
+                <a class="button" th:if="${_action} != 'add'" th:href="@{/phones/{id}/delete(id=${data.id})}">Удалить</a>
+            </p>
+        </form>
+    </div>
+
+</div>
+
+
+
+
+</body>
+</html>

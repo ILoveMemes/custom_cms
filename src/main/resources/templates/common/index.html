@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Общая информация</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / Общая информация
+    </div>
+
+    <div class="content">
+        <div th:each="common: ${data}">
+            <a class="button" th:href="@{/common/{id}/info(id = ${common.id})}">Редактировать</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>История</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / История
+    </div>
+
+    <div class="content">
+        <div th:each="history: ${data}">
+            <div style="display: inline-block;"><img th:src="@{/pic/{id}(id = ${history.pictureId})}" height="128"/></div>
+            <div style="display: inline-block; max-width: 500px;"><a th:href="@{/history/{id}/info(id = ${history.id})}" th:text="${history.caption}">caption</a></div>
+        </div>
+
+        <a class="button" href="/history/create">Добавить слайд</a>
+    </div>
+
+</div>
+
+</body>
+</html>

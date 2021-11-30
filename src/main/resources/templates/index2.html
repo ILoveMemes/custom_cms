@@ -1,0 +1,212 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${common.siteCaption}">НПП "Радуга"</title>
+    <!--link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"-->
+	<link rel="icon" type="image/png" th:href="@{/image?id={pid}(pid = ${common.siteIcon})}">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/flexslider.css">
+    <link rel="stylesheet" href="css/jquery.fancybox.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+	<section class="banner" role="banner">
+        <header id="header">
+            <div class="header-content clearfix">
+				<div class="banner-text-logo" th:text="${common.onPageCaption}">НПП &laquoРадуга&raquo</div>
+                <nav class="navigation" role="navigation">
+                    <ul class="primary-nav">
+                        <li><a href="#service">Услуги и сервис</a></li>
+						<li><a href="#customers">Заказчики</a></li>
+						<li><a href="#partners">Партнеры</a></li>
+						<li><a href="#requisites">О компании</a></li>
+						<li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </nav>
+                <a href="#" class="nav-toggle">Menu<span></span></a>
+            </div><!-- header content -->
+        </header><!-- header -->
+        <div class="container">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="banner-text text-center">
+					<img th:src="@{/image?id={pid}(pid = ${common.firstPicture})}" class="logo-image"/>
+                    <h2 th:utext="${common.topText}">НПП &laquoРадуга&raquo - эксклюзивный<br>партнер завода Ferroni</h2>
+                    <a th:href="${common.transBtnRef}" class="btn btn-large" th:text="${common.transBtnText}">На сайт завода</a>
+                </div><!-- banner text -->
+            </div>
+        </div>
+    </section><!-- banner -->
+    <section id="service" class="features section">
+        <div class="container">
+		<h3 class="subtitle">Услуги и сервис</h3>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 feature text-center" th:each="service: ${services}">
+					<img th:src="@{/image?id={pid}(pid = ${service.pictureId})}" height="180"/>
+                    <div class="feature-content">
+                        <p th:text="${service.caption}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- service -->
+	
+	<section id="customers" class="features section">
+        <div class="container">
+			<h3 class="subtitle">Заказчики</h3>
+            <div class="row">
+				<div class="col-md-6 col-12 feature text-left" th:each="customer: ${customers}">
+                    <a style="color:inherit;" th:href="${customer.ref}">
+					<div class="inline">
+						<img th:src="@{/image?id={pid}(pid = ${customer.pictureId})}" class="img-icon"/>
+					</div>
+					<div class="text">
+						<div th:text="${customer.name}"/>
+					</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section><!-- customers -->
+	
+	<section id="partners" class="features section">
+        <div class="container">
+			<h3 class="subtitle">Партнеры</h3>
+            <div class="row">
+                <div th:each="partner: ${partners}" class="col-md-2 feature text-left">
+                    <a th:text="${partner.name}" th:href="${partner.ref}" style="color:inherit;"/>
+                </div>
+            </div>
+        </div>
+    </section><!-- partnres -->
+	
+	<section id="requisites" class="features section">
+        <div class="container">
+			<h3 class="subtitle">Реквизиты компании</h3>
+            <div class="row">
+				<div class="col-md-4 feature" th:each="requisite: ${requisites}">
+					<b th:utext="${requisite.boldText}"/><br>
+                    <span th:utext="${requisite.normalText}"/>
+				</div>
+            </div>
+        </div>
+    </section><!-- requisites -->
+	
+	<section id="licenses" class="works section">
+        <div class="container">
+		<h3 class="subtitle">Лицензии и сертификаты</h3>
+            <div class="row no-gutter">
+                <div class="col-lg-4 col-md-6 col-sm-6 work" th:each="license: ${licenses}">
+                    <a th:href="@{/image?id={pid}(pid = ${license.pictureId})}" class="work-box">
+                        <img th:src="@{/image?id={pid}(pid = ${license.pictureId})}" alt="" class="work-box-picture">
+                        <div class="overlay">
+                            <div class="overlay-caption">
+                                <h5 th:text="${license.licenseType}"/>
+                                <p th:text="${license.regNumber}"/>
+                            </div>
+                        </div><!-- overlay -->
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </section><!-- works -->
+
+    <h3 class="subtitle">История компании</h3>
+	<section id="history" class="section testimonials no-padding">
+        <div class="container-fluid">
+            <div class="row no-gutter">
+				<div class="flexslider">
+                    <ul class="slides">
+                        <li th:each="slide: ${history}">
+                            <div class="col-md-6">
+                                <div class="avatar">
+                                    <img th:src="@{/image?id={pid}(pid = ${slide.pictureId})}" alt="" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+								<p th:utext="${slide.caption}"/>
+                            </div>
+                        </li>
+                    </ul>
+                </div><!-- flexslider -->
+            </div>
+        </div>
+    </section><!-- history -->
+
+    <section id="contacts" class="section download">
+        <div class="container">
+			<h3 class="subtitle">Контакты</h3>
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h3 th:text="${common.phone}">+7(473) 295-13-55 многоканальный</h3>
+                <h5 th:each="phone: ${phones}" th:text="${phone.phone}">8-910-345-35-69</h5>
+            </div>
+        </div>
+    </section><!-- contacts -->
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-6">
+                        <h5>Адреса</h5>
+                        <th:block th:each="address: ${addresses}">
+                            <p th:utext="${address.address}"/><br>
+                        </th:block>
+                    </div>
+                    <div class="footer-col col-md-6">
+                        <h5>Контакты</h5>
+						<p th:text="${common.mail}">npp-raduga_vrn@mail.ru</p>
+                        <ul class="footer-share">
+							<li th:each="messenger: ${messengers}"><img th:src="@{/image?id={pid}(pid = ${messenger.pictureId})}" class="footer-icon"/></li>
+                        </ul>
+						<p th:each="phone: ${phones}" th:text="${phone.phone}">8-910-345-35-69</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer><!-- footer -->
+
+    <script th:inline="javascript">
+        let banner = document.getElementsByClassName("banner");
+        if (banner) {
+            if (banner[0]) {
+                banner[0].style.backgroundImage = "url('/image?id=[[${common.backgroundPicture}]]')";
+            }
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.flexslider-min.js"></script>
+    <script src="js/jquery.fancybox.pack.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/retina.min.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+       
+        ga('create', 'UA-XXXX-X');
+        ga('send', 'pageview');
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Общая информация</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+
+<script type="text/javascript" th:include="pic/select::picture_selector_script"/>
+
+<script type="text/javascript">
+    function auto_grow(element) {
+        element.style.height = "5px";
+        element.style.height = (element.scrollHeight)+"px";
+    }
+    function autoSize(id) {
+        let elm = document.getElementById(id);
+        if (elm) {
+            elm.style.height = (elm.scrollHeight)+"px";
+        }
+    }
+</script>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / <a href="/common/info">Общая информация</a> / Редактирование
+    </div>
+
+    <div class="content">
+        <form th:action="${_action} == 'add' ? @{/common/add} : @{/common/update}"
+              th:method="post"
+              th:object="${data}">
+
+            <input type="hidden" id="id" th:field="*{id}" />
+
+            <div>
+                <input type="hidden" id="siteIcon" th:field="*{siteIcon}" />
+                <div>Иконка сайта:</div>
+                <div th:include="pic/select::picture_selector_upg('siteIcon')" style="max-height:300px;overflow-y:auto;"/>
+            </div>
+
+            <div class="value">
+                <label>Заголовок сайта: </label>
+                <input type="text" id="siteCaption" th:field="*{siteCaption}" />
+            </div>
+
+            <div class="value">
+                <label>Заголовок на странице: </label>
+                <input type="text" id="onPageCaption" th:field="*{onPageCaption}" />
+            </div>
+
+            <div>
+                <input type="hidden" id="backgroundPicture" th:field="*{backgroundPicture}" />
+                <div>Фоновое изображение:</div>
+                <div th:include="pic/select::picture_selector_upg('backgroundPicture')" style="max-height:300px;overflow-y:auto;"/>
+            </div>
+
+            <div>
+                <input type="hidden" id="firstPicture" th:field="*{firstPicture}" />
+                <div>Логотип вверху страницы:</div>
+                <div th:include="pic/select::picture_selector_upg('firstPicture')" style="max-height:300px;overflow-y:auto;"/>
+            </div>
+
+            <div class="value">
+                <label>Текст вверху страницы: </label>
+                <textarea oninput="auto_grow(this);" id="topText" th:field="*{topText}" />
+                <script type="text/javascript">
+                    autoSize("topText");
+                </script>
+            </div>
+
+            <div class="value">
+                <label>Текст на кнопке перехода: </label>
+                <input type="text" id="transBtnText" th:field="*{transBtnText}" />
+            </div>
+
+            <div class="value">
+                <label>Ссылка кнопки перехода: </label>
+                <input type="text" id="transBtnRef" th:field="*{transBtnRef}" />
+            </div>
+
+            <div class="value">
+                <label>E-mail: </label>
+                <input type="text" id="mail" th:field="*{mail}" />
+            </div>
+
+            <div class="value">
+                <label>Телефон: </label>
+                <input type="text" id="phone" th:field="*{phone}" />
+            </div>
+
+            <p><input class="button" type="submit" value="Сохранить"></p>
+        </form>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
+

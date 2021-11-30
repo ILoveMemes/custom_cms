@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Мессенджер</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / <a href="/messengers/info">Мессенджеры</a> / Редактирование
+    </div>
+
+    <div class="content">
+        <form th:action="${_action} == 'add' ? @{/messengers/add} : @{/messengers/update}"
+              th:method="post"
+              th:object="${data}">
+
+            <input type="hidden" id="id" th:field="*{id}" />
+
+            <div>
+                <input type="hidden" id="pictureId" th:field="*{pictureId}" />
+                <div>Выберите картинку:</div>
+                <div th:include="pic/select::picture_selector" style="max-height:300px;overflow-y:auto;"/>
+            </div>
+
+            <p>
+                <input class="button" type="submit" value="Сохранить">
+                <a class="button" th:if="${_action} != 'add'" th:href="@{/messengers/{id}/delete(id=${data.id})}">Удалить</a>
+            </p>
+        </form>
+
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

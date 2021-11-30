@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Реквизиты</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+<script type="text/javascript">
+    function auto_grow(element) {
+        element.style.height = "5px";
+        element.style.height = (element.scrollHeight)+"px";
+    }
+    function autoSize(id) {
+        let elm = document.getElementById(id);
+        if (elm) {
+            elm.style.height = (elm.scrollHeight)+"px";
+        }
+    }
+</script>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / <a href="/requisites/info">Реквизиты</a> / Редактирование
+    </div>
+
+    <div class="content">
+        <form th:action="${_action} == 'add' ? @{/requisites/add} : @{/requisites/update}"
+              th:method="post"
+              th:object="${data}">
+
+            <input type="hidden" id="id" th:field="*{id}" />
+
+            <div class="value">
+                <label>Полужирный текст: </label>
+                <textarea oninput="auto_grow(this);" id="boldText" th:field="*{boldText}"/>
+                <script type="text/javascript">
+                    autoSize("boldText");
+                </script>
+            </div>
+            <div class="value">
+                <label>Обычный текст: </label>
+                <textarea oninput="auto_grow(this);" id="normalText" th:field="*{normalText}"/>
+                <script type="text/javascript">
+                    autoSize("normalText");
+                </script>
+            </div>
+
+            <p>
+                <input class="button" type="submit" value="Сохранить">
+                <a class="button" th:if="${_action} != 'add'" th:href="@{/requisites/{id}/delete(id=${data.id})}">Удалить</a>
+            </p>
+        </form>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

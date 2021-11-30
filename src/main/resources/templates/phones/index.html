@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Телефоны</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / Телефоны
+    </div>
+
+    <div class="content">
+        <div th:each="phone: ${data}">
+            <a th:href="@{/phones/{id}/info(id = ${phone.id})}" th:text="${phone.phone}">phone</a>
+        </div>
+
+        <a class="button" href="/phones/create">Добавить</a>
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

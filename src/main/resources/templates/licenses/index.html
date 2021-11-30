@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Лицензии и сертификаты</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / Лицензии и сертификаты
+    </div>
+
+    <div class="content">
+        <div th:each="license: ${data}">
+            <img th:src="@{/pic/{id}(id = ${license.pictureId})}" height="128"/>
+            <a th:href="@{/licenses/{id}/info(id = ${license.id})}" th:text="${license.licenseType}">type</a>
+        </div>
+
+        <a class="button" href="/licenses/create">Добавить</a>
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

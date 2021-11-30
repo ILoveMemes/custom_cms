@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Партнеры</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / Партнеры
+    </div>
+
+    <div class="content">
+        <div th:each="partner: ${data}">
+            <!--img th:src="@{/pic/{id}(id = ${partner.pictureId})}" height="64"/-->
+            <a th:href="@{/partners/{id}/info(id = ${partner.id})}" th:text="${partner.name}">capture</a>
+        </div>
+
+        <a class="button" href="/partners/create">Добавить</a>
+    </div>
+
+</div>
+
+</body>
+</html>

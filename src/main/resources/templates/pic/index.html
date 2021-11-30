@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Картинки</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="title">
+        <a href="/admin">Панель управления</a> / Картинки
+    </div>
+
+    <div class="content">
+        <div th:each="pic: ${pictures}">
+            <a th:href="@{/pic/{id}(id=${pic.id})}"><img th:src="@{/pic/{id}(id = ${pic.id})}" height="64"/></a>
+            <a th:href="@{/pic/{id}/info(id=${pic.id})}" th:text="${pic.name}">capture</a>
+        </div>
+
+        <a class="button" href="/pic/create">Добавить</a>
+
+    </div>
+
+</div>
+
+
+
+</body>
+</html>
